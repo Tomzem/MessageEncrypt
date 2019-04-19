@@ -4,7 +4,8 @@
     package="com.example.mao.messageencrypt">
 
     <!-- SDCard中创建与删除文件权限 -->
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
     <!-- 向SDCard写入数据权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -18,55 +19,56 @@
         android:icon="@drawable/ic_applock"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar"
+        android:name="com.example.mao.app.New_Application">
         <activity
             android:name="com.example.mao.activity.SetPasswordActivity"
             android:excludeFromRecents="true"
             android:theme="@style/WhiteTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.example.mao.activity.MainActivity"
+            android:excludeFromRecents="true"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:excludeFromRecents="true"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.example.mao.activity.SetPointActivity"
+            android:excludeFromRecents="true"
             android:label="@string/title_activity_set_point"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:excludeFromRecents="true"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.example.mao.activity.LookImgActivity"
             android:label="@string/title_activity_look_img"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.example.mao.activity.UnlockActivity"
-            android:launchMode="singleInstance"
-            android:excludeFromRecents="true"/>
-        <service android:name="com.example.mao.service.LockService"
+        <activity
+            android:name="com.example.mao.activity.UnlockActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance" />
+
+        <service
+            android:name="com.example.mao.service.LockService"
             android:enabled="true">
-            <intent-filter android:priority="1000" >
+            <intent-filter android:priority="1000">
                 <action android:name="com.example.mao.messageencrypt" />
             </intent-filter>
         </service>
+
         <receiver android:name="com.example.mao.receiver.BootReceiver">
             <intent-filter android:priority="1000">
-                <action android:name="android.intent.action.USER_PRESENT"/>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.intent.action.ACTION_SHUTDOWN"/>
-                <action android:name="android.intent.action.PACKAGE_RESTARTED"/>
-                <action android:name="android.intent.action.ACTION_SCREEN_OFF"/>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+                <action android:name="android.intent.action.PACKAGE_RESTARTED" />
+                <action android:name="android.intent.action.ACTION_SCREEN_OFF" />
                 <action android:name="com.example.mao.open" />
+
                 <category android:name="android.intent.category.HOME" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </receiver>
         <receiver
             android:name="com.example.mao.util.MyDeviceAdmin"
-            android:permission="android.permission.BIND_DEVICE_ADMIN" >
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data
                 android:name="android.app.device_admin"
                 android:resource="@xml/device_admin" />
@@ -75,6 +77,14 @@
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
+
+        <activity android:name="com.example.mao.activity.New_MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

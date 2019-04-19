@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/lv_header"
+    android:background="@color/colorWhite"
+    android:divider="@drawable/divier"
+    android:showDividers="middle">
+
+    <RelativeLayout
+        android:id="@+id/item_change"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:gravity="center_vertical"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/tv_menu_surplus"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_marginLeft="15dp"
+            android:gravity="center_vertical"
+            android:text="@string/menu_surplus"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_surplus_time"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:text="10秒"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="27dp"
+        android:text="加密应用列表"
+        android:textSize="15sp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:textColor="@color/colorGray"
+        android:background="@color/colorGrayW"/>
+
+</LinearLayout>

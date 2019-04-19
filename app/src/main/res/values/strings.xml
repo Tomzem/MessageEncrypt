@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">图片密码应用锁</string>
+    <string name="app_name">小猫管家</string>
     <string name="menu_open">启用加密</string>
     <string name="defence_open">主动防御</string>
     <string name="menu_num">更改密码</string>
@@ -10,4 +10,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="menu_surplus">剩余时间</string>
 </resources>
