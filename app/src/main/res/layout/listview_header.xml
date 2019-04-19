@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/listview_header"
+    android:background="@color/colorWhite"
+    android:divider="@drawable/divier"
+    android:showDividers="middle">
+
+    <RelativeLayout
+        android:id="@+id/item_switch"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:gravity="center_vertical"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/menu_open"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_marginLeft="15dp"
+            android:gravity="center_vertical"
+            android:text="@string/menu_open"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/swt_menu_open"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:gravity="center_vertical"
+            android:switchMinWidth="20dp"
+            android:textOff="   "
+            android:textOn="   "
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/item_defence"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:gravity="center_vertical"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/defence_open"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_marginLeft="15dp"
+            android:gravity="center_vertical"
+            android:text="@string/defence_open"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/defence_tip"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:padding="6dp"
+            android:src="@drawable/ic_tip"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/defence_open"
+            android:layout_centerInParent="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            />
+
+        <Switch
+            android:id="@+id/swt_defence_open"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:gravity="center_vertical"
+            android:switchMinWidth="20dp"
+            android:textOff="   "
+            android:textOn="   "
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/item_change"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:gravity="center_vertical"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/tv_menu_num"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_marginLeft="15dp"
+            android:gravity="center_vertical"
+            android:text="@string/menu_num"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/goto_num"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="11dp"
+            android:gravity="center_vertical"
+            android:src="@drawable/ic_right"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"/>
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="27dp"
+        android:text="@string/menu_pic"
+        android:textSize="15sp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:textColor="@color/colorGray"
+        android:background="@color/colorGrayW"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:divider="@drawable/divier"
+            android:background="@color/colorWhite"
+            android:showDividers="middle">
+            <RelativeLayout
+                android:id="@+id/menu_pic1"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:orientation="horizontal"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/tv_menu_pic1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center_vertical"
+                    android:text="图片密码1"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp" />
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="11dp"
+                    android:gravity="center_vertical"
+                    android:src="@drawable/ic_right"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/menu_pic2"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:orientation="horizontal"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/tv_menu_pic2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center_vertical"
+                    android:text="图片密码2"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp" />
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="11dp"
+                    android:gravity="center_vertical"
+                    android:src="@drawable/ic_right"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/menu_pic3"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:orientation="horizontal"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/tv_menu_pic3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center_vertical"
+                    android:text="图片密码3"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp" />
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="11dp"
+                    android:gravity="center_vertical"
+                    android:src="@drawable/ic_right"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"/>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/add_pic"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:orientation="horizontal"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true">
+
+
+                <TextView
+                    android:id="@+id/tv_menu_pic_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/add_pic"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="27dp"
+        android:text="可加密应用"
+        android:textSize="15sp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:textColor="@color/colorGray"
+        android:background="@color/colorGrayW"/>
+
+</LinearLayout>

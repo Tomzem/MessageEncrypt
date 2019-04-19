@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="30dp"
+    android:background="#0000">
+
+    <!--
+  popupwimdow的布局注意不能使用类似
+    android:layout_marginTop=""这样属性,特别是相对布局时候.
+  布局或者控件整体靠左等都会影响popupwimdow定位使用
+    -->
+
+    <com.example.mao.util.BubbleLinearLayout
+        android:id="@+id/hot_layout"
+        android:orientation="vertical"
+        app:arrowWidth="15dp"
+        app:angle="4dp"
+        app:arrowHeight="10dp"
+        app:arrowPosition="10dp"
+        app:arrowLocation="top"
+        app:bubbleColor="@color/colorPrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:id="@+id/layoutSeclect1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="18dp"
+            android:paddingLeft="8dp"
+            android:text="什么是主动防御？"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutSeclect2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="防止第三方恶意卸载本软件,"
+            android:textColor="#fff"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutSeclect3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="不会占用资源，建议保持开启。"
+                android:textColor="#fff"
+                android:textSize="12sp" />
+        </LinearLayout>
+</com.example.mao.util.BubbleLinearLayout>
+
+</LinearLayout>

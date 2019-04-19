@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">图片密码应用锁</string>
+    <string name="menu_open">启用加密</string>
+    <string name="defence_open">主动防御</string>
+    <string name="menu_num">更改密码</string>
+    <string name="menu_pic">图案密码</string>
+    <string name="add_pic">添加新图片密码</string>
+    <string name="title_activity_set_point"> </string>
+    <string name="title_activity_look_img">LookImgActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
