@@ -9,7 +9,7 @@
     android:id="@+id/parentLayout"
     android:divider="@drawable/divier"
     android:showDividers="middle"
-    tools:context="com.example.mao.messageencrypt.SetPointActivity">
+    tools:context="com.example.mao.messageencrypt.com.example.mao.activity.SetPointActivity">
     <RelativeLayout
         android:background="#ffffff"
         android:layout_width="match_parent"

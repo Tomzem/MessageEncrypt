@@ -1,8 +1,6 @@
-package com.example.mao.messageencrypt;
+package com.example.mao.activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -15,6 +13,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.mao.messageencrypt.PointView;
+import com.example.mao.messageencrypt.R;
 import com.example.mao.util.SP;
 
 import org.json.JSONArray;

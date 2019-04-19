@@ -1,4 +1,4 @@
-package com.example.mao.messageencrypt;
+package com.example.mao.service;
 
 import android.app.Notification;
 import android.app.Service;

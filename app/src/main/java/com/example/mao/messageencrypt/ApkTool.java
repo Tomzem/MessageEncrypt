@@ -8,6 +8,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
+import com.example.mao.bean.APPInfo;
+
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,12 +24,12 @@ import java.util.Locale;
 public class ApkTool {
     static  String TAG = "ApkTool";
     Context context;
-    public static List<AppInfo> mLocalInstallApps = null;
+    public static List<APPInfo> mLocalInstallApps = null;
     public ApkTool(Context context){
         this.context = context;
     }
-    public  List<AppInfo> scanLocalInstallAppList(PackageManager packageManager) {
-        List<AppInfo> AppInfos = new ArrayList<AppInfo>();
+    public  List<APPInfo> scanLocalInstallAppList(PackageManager packageManager) {
+        List<APPInfo> AppInfos = new ArrayList<APPInfo>();
         try {
             List<PackageInfo> packageInfos = packageManager.getInstalledPackages(0);
             SharedPreferences sp= context.getSharedPreferences("APPLock", Activity.MODE_PRIVATE);
@@ -40,7 +42,7 @@ public class ApkTool {
                     continue;
                 }
 
-                AppInfo myAppInfo = new AppInfo();
+                APPInfo myAppInfo = new APPInfo();
                 myAppInfo.setAppName(packageInfo.applicationInfo.loadLabel(packageManager).toString());
                 if (packageInfo.applicationInfo.loadIcon(packageManager) == null) {
                     continue;
@@ -56,11 +58,11 @@ public class ApkTool {
         return findAllClientConnections(AppInfos);
     }
 
-    public List<AppInfo> findAllClientConnections(List<AppInfo> AppInfos)
+    public List<APPInfo> findAllClientConnections(List<APPInfo> AppInfos)
     {
         //将所有的数组按APP名称的首字母进行排序。
-        Collections.sort(AppInfos,new Comparator<AppInfo>(){
-            public int compare(AppInfo o1, AppInfo o2) {
+        Collections.sort(AppInfos,new Comparator<APPInfo>(){
+            public int compare(APPInfo o1, APPInfo o2) {
                 String s1=o1.getAppName();
                 String s2=o2.getAppName();
                 return Collator.getInstance(Locale.CHINESE).compare(s1, s2);

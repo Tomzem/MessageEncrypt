@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.mao.activity.UnlockActivity;
+import com.example.mao.bean.APPInfo;
 import com.example.mao.util.SP;
 
 import org.json.JSONArray;
@@ -82,7 +84,7 @@ public class ImgPassFragment extends Fragment {
 
         //通过包名得到app名，后面要存储用
         PackageName = this.getActivity().getIntent().getStringExtra("packageName");
-        List<AppInfo> AppInfos = new ApkTool(this.getActivity()).scanLocalInstallAppList(this.getActivity().getPackageManager());
+        List<APPInfo> AppInfos = new ApkTool(this.getActivity()).scanLocalInstallAppList(this.getActivity().getPackageManager());
         for(int i = 0;i<AppInfos.size();i++){
             if(AppInfos.get(i).getPackageName().equals(PackageName))
                 AppName = AppInfos.get(i).getAppName();

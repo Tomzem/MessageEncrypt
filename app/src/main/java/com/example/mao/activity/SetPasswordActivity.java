@@ -1,9 +1,8 @@
-package com.example.mao.messageencrypt;
+package com.example.mao.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -16,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.mao.messageencrypt.R;
 import com.example.mao.util.SP;
 import com.example.mao.util.ToastSelf;
 

@@ -1,10 +1,12 @@
-package com.example.mao.messageencrypt;
+package com.example.mao.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.WindowManager;
 
+import com.example.mao.messageencrypt.PagerAdapter;
+import com.example.mao.messageencrypt.R;
 import com.example.mao.util.SP;
 import com.example.mao.util.ViewPagerNoScroll;
 
@@ -14,7 +16,7 @@ import java.util.Random;
 
 public class UnlockActivity extends AppCompatActivity {
 
-    ViewPagerNoScroll vp_unlock;
+    public ViewPagerNoScroll vp_unlock;
     private int count = 1;
     private List<Integer> list = new ArrayList<>();
     private int what;

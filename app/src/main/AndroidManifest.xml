@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".SetPasswordActivity"
+            android:name="com.example.mao.activity.SetPasswordActivity"
             android:excludeFromRecents="true"
             android:theme="@style/WhiteTheme">
             <intent-filter>
@@ -30,29 +30,29 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.mao.activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:excludeFromRecents="true"/>
         <activity
-            android:name=".SetPointActivity"
+            android:name="com.example.mao.activity.SetPointActivity"
             android:label="@string/title_activity_set_point"
             android:theme="@style/AppTheme.NoActionBar"
             android:excludeFromRecents="true"/>
         <activity
-            android:name=".LookImgActivity"
+            android:name="com.example.mao.activity.LookImgActivity"
             android:label="@string/title_activity_look_img"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".UnlockActivity"
+        <activity android:name="com.example.mao.activity.UnlockActivity"
             android:launchMode="singleInstance"
             android:excludeFromRecents="true"/>
-        <service android:name=".LockService"
+        <service android:name="com.example.mao.service.LockService"
             android:enabled="true">
             <intent-filter android:priority="1000" >
                 <action android:name="com.example.mao.messageencrypt" />
             </intent-filter>
         </service>
-        <receiver android:name=".BootReceiver">
+        <receiver android:name="com.example.mao.receiver.BootReceiver">
             <intent-filter android:priority="1000">
                 <action android:name="android.intent.action.USER_PRESENT"/>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>

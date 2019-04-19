@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     android:divider="@drawable/divier"
     android:showDividers="middle"
-    tools:context="com.example.mao.messageencrypt.LookImgActivity">
+    tools:context="com.example.mao.messageencrypt.com.example.mao.activity.LookImgActivity">
 
     <RelativeLayout
         android:elevation="20dp"

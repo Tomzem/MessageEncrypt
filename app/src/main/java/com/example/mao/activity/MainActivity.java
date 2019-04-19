@@ -1,4 +1,4 @@
-package com.example.mao.messageencrypt;
+package com.example.mao.activity;
 
 import android.app.ProgressDialog;
 import android.app.admin.DevicePolicyManager;
@@ -32,6 +32,10 @@ import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.example.mao.bean.APPInfo;
+import com.example.mao.messageencrypt.ApkTool;
+import com.example.mao.messageencrypt.R;
+import com.example.mao.service.LockService;
 import com.example.mao.util.MyDeviceAdmin;
 import com.example.mao.util.SP;
 import com.example.mao.util.TestPopwindow2;
@@ -284,7 +288,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 super.run();
                 //扫描得到APP列表
                 ApkTool apk = new ApkTool(MainActivity.this);
-                final List<AppInfo> appInfos = apk.scanLocalInstallAppList(MainActivity.this.getPackageManager());
+                final List<APPInfo> appInfos = apk.scanLocalInstallAppList(MainActivity.this.getPackageManager());
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -447,7 +451,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void openSet(){
-        List<AppInfo> AppInfos = new ApkTool(this).scanLocalInstallAppList(this.getPackageManager());
+        List<APPInfo> AppInfos = new ApkTool(this).scanLocalInstallAppList(this.getPackageManager());
         for(int i = 0;i<AppInfos.size();i++){
             SP.save(this,AppInfos.get(i).getAppName()+"lock", true);
         }
@@ -507,15 +511,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     class AppAdapter extends BaseAdapter {
 
-        List<AppInfo> AppInfos = new ArrayList<AppInfo>();
+        List<APPInfo> AppInfos = new ArrayList<APPInfo>();
         Context context;
-        public void setData(Context context,List<AppInfo> AppInfos) {
+        public void setData(Context context,List<APPInfo> AppInfos) {
             this.AppInfos = AppInfos;
             this.context = context;
             notifyDataSetChanged();
         }
 
-        public List<AppInfo> getData() {
+        public List<APPInfo> getData() {
             return AppInfos;
         }
 
@@ -543,7 +547,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder mViewHolder;
-            AppInfo myAppInfo = AppInfos.get(position);
+            APPInfo myAppInfo = AppInfos.get(position);
             if (convertView == null) {
                 mViewHolder = new ViewHolder();
                 convertView = LayoutInflater.from(getBaseContext()).inflate(R.layout.listview_app, null);

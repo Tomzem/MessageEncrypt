@@ -1,4 +1,4 @@
-package com.example.mao.messageencrypt;
+package com.example.mao.bean;
 
 import android.graphics.drawable.Drawable;
 
@@ -6,18 +6,18 @@ import android.graphics.drawable.Drawable;
  * Created by Mao on 2017/5/5.
  */
 
-class AppInfo {
+public class APPInfo {
     private Drawable image;
     private String appName;
     private boolean radio;
     private String packageName;
-    public AppInfo(Drawable image, String appName,boolean radio,String packageName) {
+    public APPInfo(Drawable image, String appName,boolean radio,String packageName) {
         this.image = image;
         this.appName = appName;
         this.radio = radio;
         this.packageName = packageName;
     }
-    public AppInfo() {
+    public APPInfo() {
 
     }
 

@@ -1,10 +1,13 @@
-package com.example.mao.messageencrypt;
+package com.example.mao.receiver;
 
 import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import com.example.mao.bean.APPInfo;
+import com.example.mao.messageencrypt.ApkTool;
+import com.example.mao.service.LockService;
 import com.example.mao.util.SP;
 
 import java.util.List;
@@ -31,7 +34,7 @@ public class BootReceiver extends BroadcastReceiver  {
             //检查Service状态
             ActivityManager manager = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
             for (ActivityManager.RunningServiceInfo service :manager.getRunningServices(Integer.MAX_VALUE)) {
-                if("com.example.mao.messageencrypt.LockService".equals(service.service.getClassName()))
+                if("com.example.mao.service.LockService".equals(service.service.getClassName()))
                 {
                     isServiceRunning = true;
                 }
@@ -48,7 +51,7 @@ public class BootReceiver extends BroadcastReceiver  {
         }else if (ACTION_BOOT.equals(intent.getAction())) {
             openService(context);
         }else if (ACTION_USER_PRESENT.equals(intent.getAction())) {
-            List<AppInfo> AppInfos = new ApkTool(context).scanLocalInstallAppList(context.getPackageManager());
+            List<APPInfo> AppInfos = new ApkTool(context).scanLocalInstallAppList(context.getPackageManager());
             for(int i = 0;i<AppInfos.size();i++){
                 SP.save(context,AppInfos.get(i).getAppName()+"lock", true);
             }

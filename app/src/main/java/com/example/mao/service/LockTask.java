@@ -1,4 +1,4 @@
-package com.example.mao.messageencrypt;
+package com.example.mao.service;
 
 import android.app.ActivityManager;
 import android.app.usage.UsageStats;
@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
+import com.example.mao.bean.APPInfo;
+import com.example.mao.messageencrypt.ApkTool;
 import com.example.mao.util.SP;
 
 import java.util.List;
@@ -50,7 +52,7 @@ public class LockTask extends TimerTask {
         }
         if (findPackageLock(packageName)) {
             Intent intent = new Intent();
-            intent.setClassName("com.example.mao.messageencrypt", "com.example.mao.messageencrypt.UnlockActivity");
+            intent.setClassName("com.example.mao.messageencrypt", "com.example.mao.activity.UnlockActivity");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("packageName", packageName);
             mContext.startActivity(intent);
@@ -61,7 +63,7 @@ public class LockTask extends TimerTask {
     }
 
     private boolean findPackageLock(String packageName){
-        List<AppInfo> AppInfos = new ApkTool(mContext).scanLocalInstallAppList(mContext.getPackageManager());
+        List<APPInfo> AppInfos = new ApkTool(mContext).scanLocalInstallAppList(mContext.getPackageManager());
         for(int i = 0;i<AppInfos.size();i++){
             if (AppInfos.get(i).getPackageName().equals(packageName)){
                 if(SP.get(mContext,AppInfos.get(i).getAppName(),false)){
