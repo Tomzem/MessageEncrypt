@@ -15,12 +15,14 @@ import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.mao.app.Config;
 import com.example.mao.app.New_Observer;
 import com.example.mao.adapter.New_AppAdapter;
 import com.example.mao.bean.APPInfo;
 import com.example.mao.messageencrypt.ApkTool;
 import com.example.mao.messageencrypt.R;
 import com.example.mao.service.LockService;
+import com.example.mao.service.TimeService;
 import com.example.mao.util.New_SharePre;
 import com.example.mao.util.New_Util;
 import com.example.mao.util.ToastSelf;
@@ -34,6 +36,14 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ *  存剩余秒数
+ *  当剩余秒数为0，且时间到的情况下 打开serviice
+ *
+ *  开关打开 时间没技术的化 打开计时器
+ *
+ *
+ */
 public class New_MainActivity extends AppCompatActivity implements View.OnClickListener{
     private ListView lv_app;
     private New_AppAdapter mAppAdapter;
@@ -71,8 +81,13 @@ public class New_MainActivity extends AppCompatActivity implements View.OnClickL
         mAppAdapter = new New_AppAdapter();
         lv_app.setAdapter(mAppAdapter);
         mSwitch.setChecked(New_SharePre.getData("isOpenLock", false));
-        intent = new Intent(this,LockService.class);
+        int time = New_SharePre.getData("time", Config.time);
         if (mSwitch.isChecked()) {
+            if (time == 0) {
+                intent = new Intent(this,LockService.class);
+            } else {
+                intent = new Intent(this,TimeService.class);
+            }
             startService(intent);
         }
     }
@@ -119,6 +134,12 @@ public class New_MainActivity extends AppCompatActivity implements View.OnClickL
             } else {
                 mSwitch.setChecked(true);
                 New_SharePre.saveData("isOpenLock", true);
+                int time = New_SharePre.getData("time", Config.time);
+                if (time == 0) {
+                    intent = new Intent(this,LockService.class);
+                } else {
+                    intent = new Intent(this,TimeService.class);
+                }
                 startService(intent);
             }
         } else if (view == mSurplusTime) {

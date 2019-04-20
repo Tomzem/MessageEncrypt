@@ -56,6 +56,13 @@
                 <action android:name="com.example.mao.messageencrypt" />
             </intent-filter>
         </service>
+        <service
+            android:name="com.example.mao.service.TimeService"
+            android:enabled="true">
+            <intent-filter android:priority="1000">
+                <action android:name="com.example.mao.messageencrypt" />
+            </intent-filter>
+        </service>
 
         <receiver android:name="com.example.mao.receiver.BootReceiver">
             <intent-filter android:priority="1000">
