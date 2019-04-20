@@ -103,9 +103,9 @@ public class TimeService extends Service {
         params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
 
         //设置窗口初始停靠位置.
-        params.gravity = Gravity.LEFT | Gravity.TOP;
+        params.gravity = Gravity.RIGHT | Gravity.TOP;
         params.x = 0;
-        params.y = 300;
+        params.y = 900;
 
         //设置悬浮窗口长宽数据.
         //注意，这里的width和height均使用px而非dp.这里我偷了个懒
@@ -139,6 +139,7 @@ public class TimeService extends Service {
                 //这就是状态栏偏移量用的地方
                 params.y = (int) event.getRawY() - 70 - statusBarHeight;
                 windowManager.updateViewLayout(toucherLayout,params);
+                ToastSelf.ToastSelf("笨蛋！点不到！！", New_Application.getContext());
                 return false;
             }
         });

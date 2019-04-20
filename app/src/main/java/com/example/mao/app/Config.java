@@ -6,5 +6,5 @@ package com.example.mao.app;
  * @desc
  */
 public class Config {
-    public static final int time = 60;
+    public static final int time = 60*60*3;
 }

@@ -1,9 +1,11 @@
 package com.example.mao.util;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mao.messageencrypt.R;
 
@@ -14,13 +16,25 @@ import com.example.mao.messageencrypt.R;
 
 public class ToastSelf {
 
-    public static void ToastSelf(String Message,Context context){
-        LayoutInflater inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View toastRoot = inflater.inflate(R.layout.self_toast,null);
-        android.widget.Toast toast=new android.widget.Toast(context);
-        toast.setView(toastRoot);
-        TextView tv=(TextView)toastRoot.findViewById(R.id.TextViewInfo);
-        tv.setText(Message);
-        toast.show();
+    private static Toast mToast;
+    private static TextView mTvToast;
+    public static void ToastSelf(String content, Context ctx) {
+        if (mToast == null) {
+            mToast = new Toast(ctx);
+            mToast.setGravity(Gravity.CENTER, 0, 0);//设置toast显示的位置，这是居中
+            mToast.setDuration(Toast.LENGTH_SHORT);//设置toast显示的时长
+            View _root = LayoutInflater.from(ctx).inflate(R.layout.self_toast, null);//自定义样式，自定义布局文件
+            mTvToast = (TextView) _root.findViewById(R.id.TextViewInfo);
+            mToast.setView(_root);//设置自定义的view
+        }
+        mTvToast.setText(content);//设置文本
+        mToast.show();//展示toast
+    }
+    public static void cancelToast() {
+        if (mToast != null) {
+            mToast.cancel();
+            mToast = null;
+            mTvToast = null;
+        }
     }
 }
