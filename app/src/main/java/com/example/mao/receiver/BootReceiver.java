@@ -51,7 +51,7 @@ public class BootReceiver extends BroadcastReceiver  {
         }else if (ACTION_BOOT.equals(intent.getAction())) {
             openService(context);
         }else if (ACTION_USER_PRESENT.equals(intent.getAction())) {
-            List<APPInfo> AppInfos = new ApkTool(context).scanLocalInstallAppList(context.getPackageManager());
+            List<APPInfo> AppInfos = ApkTool.scanLocalInstallAppList(context.getPackageManager());
             for(int i = 0;i<AppInfos.size();i++){
                 SP.save(context,AppInfos.get(i).getAppName()+"lock", true);
             }

@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import com.example.mao.util.New_SharePre;
 import com.example.mao.util.SP;
 
 import java.util.Timer;
@@ -29,11 +30,11 @@ public class LockService  extends Service {
 
     public void onCreate() {
         super.onCreate();
-        startForeground(FOREGROUND_ID, new Notification());
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
         startTimer();
+        startForeground(FOREGROUND_ID, new Notification());
         return START_STICKY;
     }
 
@@ -43,10 +44,14 @@ public class LockService  extends Service {
     }
 
     public void onDestroy() {
-        stopForeground(true);
-        //startForeground(FOREGROUND_ID, new Notification());
-        Intent intent = new Intent("com.example.mao.open");
-        sendBroadcast(intent);
+        if (New_SharePre.getData("isOpenLock", false)) {
+            stopForeground(true);
+            //startForeground(FOREGROUND_ID, new Notification());
+            Intent intent = new Intent("com.example.mao.open");
+            sendBroadcast(intent);
+        } else {
+            super.onDestroy();
+        }
     }
 
     @Nullable
@@ -54,6 +59,4 @@ public class LockService  extends Service {
     public IBinder onBind(Intent intent) {
         return null;
     }
-
-
 }

@@ -8,6 +8,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
+import com.example.mao.app.New_Application;
 import com.example.mao.bean.APPInfo;
 
 import java.text.Collator;
@@ -23,21 +24,20 @@ import java.util.Locale;
  */
 public class ApkTool {
     static  String TAG = "ApkTool";
-    Context context;
-    public static List<APPInfo> mLocalInstallApps = null;
-    public ApkTool(Context context){
-        this.context = context;
+    public static List<APPInfo> mLocalInstallApps = new ArrayList<>();
+
+    private ApkTool(){
     }
-    public  List<APPInfo> scanLocalInstallAppList(PackageManager packageManager) {
+    public static List<APPInfo> scanLocalInstallAppList(PackageManager packageManager) {
         List<APPInfo> AppInfos = new ArrayList<APPInfo>();
         try {
             List<PackageInfo> packageInfos = packageManager.getInstalledPackages(0);
-            SharedPreferences sp= context.getSharedPreferences("APPLock", Activity.MODE_PRIVATE);
+            SharedPreferences sp= New_Application.getContext().getSharedPreferences("APPLock", Activity.MODE_PRIVATE);
             for (int i = 0; i < packageInfos.size(); i++) {
                 PackageInfo packageInfo = packageInfos.get(i);
                 //过滤掉系统app
                 if(packageInfo.applicationInfo.loadLabel(packageManager).toString()=="短信"){
-
+                    continue;
                 }else if ((ApplicationInfo.FLAG_SYSTEM & packageInfo.applicationInfo.flags) != 0) {
                     continue;
                 }
@@ -58,8 +58,7 @@ public class ApkTool {
         return findAllClientConnections(AppInfos);
     }
 
-    public List<APPInfo> findAllClientConnections(List<APPInfo> AppInfos)
-    {
+    public static List<APPInfo> findAllClientConnections(List<APPInfo> AppInfos) {
         //将所有的数组按APP名称的首字母进行排序。
         Collections.sort(AppInfos,new Comparator<APPInfo>(){
             public int compare(APPInfo o1, APPInfo o2) {
@@ -68,7 +67,18 @@ public class ApkTool {
                 return Collator.getInstance(Locale.CHINESE).compare(s1, s2);
             }
         });
+        if (mLocalInstallApps.size() == 0) {
+            mLocalInstallApps.addAll(AppInfos);
+        }
         return AppInfos;
     }
 
+    public static boolean findApp(String packageName) {
+        for (APPInfo appInfo :mLocalInstallApps) {
+            if (appInfo.getPackageName().equals(packageName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

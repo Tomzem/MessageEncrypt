@@ -287,8 +287,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void run() {
                 super.run();
                 //扫描得到APP列表
-                ApkTool apk = new ApkTool(MainActivity.this);
-                final List<APPInfo> appInfos = apk.scanLocalInstallAppList(MainActivity.this.getPackageManager());
+                final List<APPInfo> appInfos = ApkTool.scanLocalInstallAppList(MainActivity.this.getPackageManager());
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -451,7 +450,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void openSet(){
-        List<APPInfo> AppInfos = new ApkTool(this).scanLocalInstallAppList(this.getPackageManager());
+        List<APPInfo> AppInfos = ApkTool.scanLocalInstallAppList(this.getPackageManager());
         for(int i = 0;i<AppInfos.size();i++){
             SP.save(this,AppInfos.get(i).getAppName()+"lock", true);
         }

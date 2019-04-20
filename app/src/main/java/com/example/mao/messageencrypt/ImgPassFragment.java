@@ -84,7 +84,7 @@ public class ImgPassFragment extends Fragment {
 
         //通过包名得到app名，后面要存储用
         PackageName = this.getActivity().getIntent().getStringExtra("packageName");
-        List<APPInfo> AppInfos = new ApkTool(this.getActivity()).scanLocalInstallAppList(this.getActivity().getPackageManager());
+        List<APPInfo> AppInfos = ApkTool.scanLocalInstallAppList(this.getActivity().getPackageManager());
         for(int i = 0;i<AppInfos.size();i++){
             if(AppInfos.get(i).getPackageName().equals(PackageName))
                 AppName = AppInfos.get(i).getAppName();

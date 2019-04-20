@@ -2,6 +2,7 @@ package com.example.mao.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,12 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Switch;
 
 import com.example.mao.app.New_Observer;
 import com.example.mao.adapter.New_AppAdapter;
 import com.example.mao.bean.APPInfo;
 import com.example.mao.messageencrypt.ApkTool;
 import com.example.mao.messageencrypt.R;
+import com.example.mao.service.LockService;
+import com.example.mao.util.New_SharePre;
+import com.example.mao.util.New_Util;
 import com.example.mao.util.ToastSelf;
 import com.example.mao.weiget.New_RelativeLayout;
 
@@ -32,6 +37,8 @@ public class New_MainActivity extends AppCompatActivity implements View.OnClickL
     private Context mContext;
     private New_RelativeLayout mLockSwitch;
     private New_RelativeLayout mSurplusTime;
+    private Switch mSwitch;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +49,7 @@ public class New_MainActivity extends AppCompatActivity implements View.OnClickL
         setSupportActionBar(toolbar);
 
         initView();
+        initData();
         initAppList();
     }
 
@@ -50,12 +58,20 @@ public class New_MainActivity extends AppCompatActivity implements View.OnClickL
         LinearLayout lv_header = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.new_head_list_app,null);
         mLockSwitch = (New_RelativeLayout) lv_header.findViewById(R.id.item_switch);
         mSurplusTime = (New_RelativeLayout) lv_header.findViewById(R.id.item_surplus_time);
+        mSwitch = (Switch) lv_header.findViewById(R.id.swt_menu_open);
         mLockSwitch.setOnClickListener(this);
         mSurplusTime.setOnClickListener(this);
-
         lv_app.addHeaderView(lv_header);
+    }
+
+    private void initData() {
         mAppAdapter = new New_AppAdapter();
         lv_app.setAdapter(mAppAdapter);
+        mSwitch.setChecked(New_SharePre.getData("isOpenLock", false));
+        intent = new Intent(this,LockService.class);
+        if (mSwitch.isChecked()) {
+            startService(intent);
+        }
     }
 
     private void initAppList(){
@@ -66,8 +82,7 @@ public class New_MainActivity extends AppCompatActivity implements View.OnClickL
         Observable.create(new ObservableOnSubscribe<List<APPInfo>>() {
             @Override
             public void subscribe(ObservableEmitter<List<APPInfo>> emitter) throws Exception {
-                ApkTool apk = new ApkTool(mContext);
-                List<APPInfo> appInfo = apk.scanLocalInstallAppList(mContext.getPackageManager());
+                List<APPInfo> appInfo = ApkTool.scanLocalInstallAppList(mContext.getPackageManager());
                 emitter.onNext(appInfo);
             }
         })
@@ -90,8 +105,19 @@ public class New_MainActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
+        if (New_Util.isDoubleClick()){
+            return;
+        }
         if (view == mLockSwitch) {
-            ToastSelf.ToastSelf("mLockSwitch", mContext);
+            if (mSwitch.isChecked()) {
+                mSwitch.setChecked(false);
+                New_SharePre.saveData("isOpenLock", false);
+                stopService(intent);
+            } else {
+                mSwitch.setChecked(true);
+                New_SharePre.saveData("isOpenLock", true);
+                startService(intent);
+            }
         } else if (view == mSurplusTime) {
             ToastSelf.ToastSelf("mSurplusTime", mContext);
         }
