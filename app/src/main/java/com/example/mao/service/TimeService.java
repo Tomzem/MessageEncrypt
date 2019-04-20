@@ -41,7 +41,15 @@ public class TimeService extends Service {
     ImageButton img_xfc;
 
     private Timer mTimer;
-    public static final int FOREGROUND_ID = 1;
+    public static final int FOREGROUND_ID = 0;
+    private void startTimer() {
+        if (mTimer == null) {
+            mTimer = new Timer();
+            TimeTask lockTask = new TimeTask(this);
+            mTimer.schedule(lockTask, 0L, 1000L);
+        }
+    }
+
 
     public void onCreate() {
         super.onCreate();
@@ -51,6 +59,7 @@ public class TimeService extends Service {
 
     public int onStartCommand(Intent intent, int flags, int startId) {
         startForeground(FOREGROUND_ID, new Notification());
+        startTimer();
         return START_STICKY;
     }
 

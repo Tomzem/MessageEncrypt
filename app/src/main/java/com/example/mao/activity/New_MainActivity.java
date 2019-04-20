@@ -1,8 +1,12 @@
 package com.example.mao.activity;
 
 import android.app.ProgressDialog;
+import android.app.usage.UsageStats;
+import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +17,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mao.app.Config;
@@ -25,6 +30,7 @@ import com.example.mao.service.LockService;
 import com.example.mao.service.TimeService;
 import com.example.mao.util.New_SharePre;
 import com.example.mao.util.New_Util;
+import com.example.mao.util.SP;
 import com.example.mao.util.ToastSelf;
 import com.example.mao.weiget.New_RelativeLayout;
 
@@ -52,6 +58,7 @@ public class New_MainActivity extends AppCompatActivity implements View.OnClickL
     private New_RelativeLayout mSurplusTime;
     private Switch mSwitch;
     private Intent intent;
+    private TextView tvTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +79,7 @@ public class New_MainActivity extends AppCompatActivity implements View.OnClickL
         mLockSwitch = (New_RelativeLayout) lv_header.findViewById(R.id.item_switch);
         mSurplusTime = (New_RelativeLayout) lv_header.findViewById(R.id.item_surplus_time);
         mSwitch = (Switch) lv_header.findViewById(R.id.swt_menu_open);
+        tvTime = (TextView) lv_header.findViewById(R.id.tv_surplus_time);
         mLockSwitch.setOnClickListener(this);
         mSurplusTime.setOnClickListener(this);
         lv_app.addFooterView(lv_header);
@@ -82,6 +90,7 @@ public class New_MainActivity extends AppCompatActivity implements View.OnClickL
         lv_app.setAdapter(mAppAdapter);
         mSwitch.setChecked(New_SharePre.getData("isOpenLock", false));
         int time = New_SharePre.getData("time", Config.time);
+        tvTime.setText(time+"秒");
         if (mSwitch.isChecked()) {
             if (time == 0) {
                 intent = new Intent(this,LockService.class);
@@ -140,6 +149,7 @@ public class New_MainActivity extends AppCompatActivity implements View.OnClickL
                 } else {
                     intent = new Intent(this,TimeService.class);
                 }
+                openSet();
                 startService(intent);
             }
         } else if (view == mSurplusTime) {
@@ -160,5 +170,47 @@ public class New_MainActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent);
             }
         }
+    }
+
+    private void openSet(){
+        if(isNoOption()){
+            if(isNoSwitch()){
+                SP.save(this,"isOpenLock", true);
+                startService(new Intent(this, TimeService.class));
+                sendBroadcast(new Intent("com.example.mao.messageencrypt"));
+            }else{
+                SP.save(this,"isOpenLock", true);
+                startService(new Intent(this, TimeService.class));
+                sendBroadcast(new Intent("com.example.mao.messageencrypt"));
+                ToastSelf.ToastSelf("请您为应用开放高级权限",this);
+                Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+                startActivity(intent);
+            }
+        }else{
+            SP.save(this,"isOpenLock", true);
+            startService(new Intent(this, TimeService.class));
+            sendBroadcast(new Intent("com.example.mao.messageencrypt"));
+            ToastSelf.ToastSelf("请您为应用开放高级权限",this);
+            Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+            startActivity(intent);
+        }
+
+    }
+
+    //判断有没有这个设备
+    private boolean isNoOption(){
+        PackageManager packageManager = getApplicationContext().getPackageManager();
+        Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+        List<ResolveInfo> info = packageManager.queryIntentActivities(intent,PackageManager.MATCH_DEFAULT_ONLY);
+        return info.size()>0;
+    }
+    //判断有没有打开
+    private boolean isNoSwitch(){
+        long ts  = System.currentTimeMillis();
+        UsageStatsManager usageStatsManager =(UsageStatsManager) getApplicationContext().getSystemService(Context.USAGE_STATS_SERVICE);
+            List<UsageStats> queryUsageStats = usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_BEST,0,ts);
+            if(queryUsageStats == null||queryUsageStats.isEmpty())
+                return false;
+            return true;
     }
 }

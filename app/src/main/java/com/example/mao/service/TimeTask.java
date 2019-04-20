@@ -1,35 +1,33 @@
 package com.example.mao.service;
 
 import android.app.ActivityManager;
-import android.app.usage.UsageStats;
-import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 
 import com.example.mao.app.Config;
-import com.example.mao.bean.APPInfo;
 import com.example.mao.messageencrypt.ApkTool;
 import com.example.mao.util.New_SharePre;
-import com.example.mao.util.SP;
 import com.example.mao.util.TimeUtil;
 
 import java.util.List;
-import java.util.SortedMap;
+import java.util.Random;
 import java.util.TimerTask;
-import java.util.TreeMap;
 
 /**
- * Created by Mao on 2017/5/6.
+ * @author Tomze
+ * @time 2019年04月20日 20:02
+ * @desc
  */
+public class TimeTask extends TimerTask {
 
-public class LockTask extends TimerTask {
     private Context mContext;
     private ActivityManager mActivityManager;
+    private int time = 0;
 
-    public LockTask(Context context) {
+    public TimeTask(Context context) {
         mContext = context;
         mActivityManager = ((ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE));
+        time = New_SharePre.getData("time", Config.time);
     }
 
     @Override
@@ -39,21 +37,24 @@ public class LockTask extends TimerTask {
         ActivityManager.RunningTaskInfo localRunningTaskInfo = (ActivityManager.RunningTaskInfo)localList.get(0);
         packageName = localRunningTaskInfo.topActivity.getPackageName();
         if (findPackageLock(packageName)) {
+            time = time - 1;
+            if (time%3 == 0) {
+                New_SharePre.saveData("time", time);
+            }
             if (TimeUtil.isNewDay()) {
                 New_SharePre.saveData("time", Config.time);
+                time = Config.time;
+            }
+            if (time <= 0) {
                 this.cancel();
-                Intent intent = new Intent(mContext,LockService.class);
+                Intent intent = new Intent(mContext,TimeService.class);
                 mContext.stopService(intent);
-                intent = new Intent(mContext, TimeService.class);
+                intent = new Intent(mContext, LockService.class);
                 mContext.startService(intent);
             }
-            Intent intent = new Intent();
-            intent.setClassName("com.example.mao.messageencrypt", "com.example.mao.activity.UnlockActivity");
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("packageName", packageName);
-            mContext.startActivity(intent);
         }
     }
+
 
     private boolean findPackageLock(String packName){
         if(New_SharePre.getData("isOpenLock", false))
