@@ -8,7 +8,7 @@ import android.view.WindowManager;
 import com.example.mao.messageencrypt.PagerAdapter;
 import com.example.mao.messageencrypt.R;
 import com.example.mao.util.SP;
-import com.example.mao.util.ViewPagerNoScroll;
+import com.example.mao.weiget.ViewPagerNoScroll;
 
 import java.util.ArrayList;
 import java.util.List;

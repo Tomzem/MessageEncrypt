@@ -12,7 +12,7 @@
   布局或者控件整体靠左等都会影响popupwimdow定位使用
     -->
 
-    <com.example.mao.util.BubbleLinearLayout
+    <com.example.mao.weiget.BubbleLinearLayout
         android:id="@+id/hot_layout"
         android:orientation="vertical"
         app:arrowWidth="15dp"
@@ -70,6 +70,6 @@
                 android:textColor="#fff"
                 android:textSize="12sp" />
         </LinearLayout>
-</com.example.mao.util.BubbleLinearLayout>
+</com.example.mao.weiget.BubbleLinearLayout>
 
 </LinearLayout>

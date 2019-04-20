@@ -1,4 +1,4 @@
-package com.example.mao.util;
+package com.example.mao.weiget;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;

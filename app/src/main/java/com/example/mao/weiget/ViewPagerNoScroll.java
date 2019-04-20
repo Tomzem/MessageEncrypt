@@ -1,4 +1,4 @@
-package com.example.mao.util;
+package com.example.mao.weiget;
 
 /**
  * Created by LongRiver on 2017/3/16.

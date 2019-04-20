@@ -29,12 +29,6 @@ public class LockService  extends Service {
 
     public void onCreate() {
         super.onCreate();
-        try {
-            if (Build.VERSION.SDK_INT < 18) {
-                startForeground(1120, new Notification());
-            }
-        } catch (Exception e) {
-        }
         startForeground(FOREGROUND_ID, new Notification());
     }
 
@@ -49,15 +43,10 @@ public class LockService  extends Service {
     }
 
     public void onDestroy() {
-        if(SP.get(this,"open_encrypt",false)){
-            stopForeground(true);
-            //startForeground(FOREGROUND_ID, new Notification());
-            Intent intent = new Intent("com.example.mao.open");
-            sendBroadcast(intent);
-        }else {
-            super.onDestroy();
-        }
-
+        stopForeground(true);
+        //startForeground(FOREGROUND_ID, new Notification());
+        Intent intent = new Intent("com.example.mao.open");
+        sendBroadcast(intent);
     }
 
     @Nullable

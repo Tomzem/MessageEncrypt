@@ -7,8 +7,41 @@
     android:divider="@drawable/divier"
     android:showDividers="middle">
 
-    <RelativeLayout
-        android:id="@+id/item_change"
+    <com.example.mao.weiget.New_RelativeLayout
+        android:id="@+id/item_switch"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:gravity="center_vertical"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/menu_open"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_marginLeft="15dp"
+            android:gravity="center_vertical"
+            android:text="@string/menu_open_lock"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/swt_menu_open"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:gravity="center_vertical"
+            android:switchMinWidth="20dp"
+            android:textOff="   "
+            android:textOn="   "
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp" />
+
+    </com.example.mao.weiget.New_RelativeLayout>
+
+    <com.example.mao.weiget.New_RelativeLayout
+        android:id="@+id/item_surplus_time"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:gravity="center_vertical"
@@ -36,7 +69,7 @@
             android:textColor="@color/colorBlack"
             android:textSize="16sp" />
 
-    </RelativeLayout>
+    </com.example.mao.weiget.New_RelativeLayout>
 
 
     <TextView

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.mao.messageencrypt.com.example.mao.activity.UnlockActivity">
-    <com.example.mao.util.ViewPagerNoScroll
+    <com.example.mao.weiget.ViewPagerNoScroll
         android:id="@+id/vp_unlock"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
