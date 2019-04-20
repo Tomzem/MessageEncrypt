@@ -31,12 +31,12 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         if(count > 1){
             if(count - position == 1){
-                return NumPassFragment.newInstance();
+                return New_NumPassFragment.newInstance();
             }else{
                 return ImgPassFragment.newInstance(what);
             }
         }else{
-            return NumPassFragment.newInstance();
+            return New_NumPassFragment.newInstance();
         }
     }
 

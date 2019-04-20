@@ -14,4 +14,7 @@
 
     <string name="menu_open_lock">启用管家</string>
     <string name="menu_surplus">剩余时间</string>
+    <string name="back_app">返回</string>
+    <string name="call_me">Call Me</string>
+    <string name="time_over">小淘气，你的时间到了！</string>
 </resources>

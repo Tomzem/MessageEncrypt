@@ -3,6 +3,8 @@ package com.example.mao.activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.mao.app.New_Observer;
 import com.example.mao.adapter.New_AppAdapter;
@@ -47,7 +50,7 @@ public class New_MainActivity extends AppCompatActivity implements View.OnClickL
         mContext = this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.tb_label);
         setSupportActionBar(toolbar);
-
+        getPremission();
         initView();
         initData();
         initAppList();
@@ -125,5 +128,16 @@ public class New_MainActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onBackPressed() {
+    }
+
+    public void getPremission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (!Settings.canDrawOverlays(mContext)) {
+                //若没有权限，提示获取.
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+                ToastSelf.ToastSelf("请打开悬浮窗权限", mContext);
+                startActivity(intent);
+            }
+        }
     }
 }

@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#d6852f"
+    tools:context="com.example.mao.messageencrypt.New_NumPassFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+        <ImageView
+            android:id="@+id/iv_close"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:padding="10dp"
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_close"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:src="@drawable/xfc_cat"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/time_over"
+        android:textSize="25sp"
+        android:textColor="@color/colorWhite"
+        android:gravity="center"
+        android:background="#2331cf"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/tv_call_me"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/call_me"
+        android:textSize="25sp"
+        android:textColor="@color/colorWhite"
+        android:gravity="center"
+        android:background="#2331cf"/>
+
+    <TextView
+        android:id="@+id/tc_back_app"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/back_app"
+        android:textSize="25sp"
+        android:textColor="@color/colorWhite"
+        android:gravity="center"
+        android:background="#2331cf"/>
+</LinearLayout>
