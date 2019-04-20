@@ -64,7 +64,7 @@ public class New_MainActivity extends AppCompatActivity implements View.OnClickL
         mSwitch = (Switch) lv_header.findViewById(R.id.swt_menu_open);
         mLockSwitch.setOnClickListener(this);
         mSurplusTime.setOnClickListener(this);
-        lv_app.addHeaderView(lv_header);
+        lv_app.addFooterView(lv_header);
     }
 
     private void initData() {

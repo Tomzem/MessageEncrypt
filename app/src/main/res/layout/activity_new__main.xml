@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
@@ -20,12 +21,24 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="加密应用列表"
+        android:textSize="15sp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:textColor="@color/colorGray"
+        android:background="@color/colorGrayW"
+        android:layout_below="@+id/title"/>
+
     <ListView
         android:id="@+id/lv_app"
+        android:layout_below="@id/label"
         android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
         />
 
 </RelativeLayout>

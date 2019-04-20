@@ -105,7 +105,7 @@ public class LockService  extends Service {
         //设置窗口初始停靠位置.
         params.gravity = Gravity.LEFT | Gravity.TOP;
         params.x = 0;
-        params.y = 0;
+        params.y = 300;
 
         //设置悬浮窗口长宽数据.
         //注意，这里的width和height均使用px而非dp.这里我偷了个懒

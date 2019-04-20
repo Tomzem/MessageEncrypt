@@ -71,15 +71,4 @@
 
     </com.example.mao.weiget.New_RelativeLayout>
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="27dp"
-        android:text="加密应用列表"
-        android:textSize="15sp"
-        android:gravity="center_vertical"
-        android:paddingLeft="15dp"
-        android:textColor="@color/colorGray"
-        android:background="@color/colorGrayW"/>
-
 </LinearLayout>
